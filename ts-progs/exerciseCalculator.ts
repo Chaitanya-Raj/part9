@@ -8,20 +8,23 @@ interface Result {
   average: number;
 }
 
-const parseArgs = (args: Array<string>) => {
-  if (args.length < 4) throw new Error("Not enough arguments");
+// const parseArgs = (args: Array<string>) => {
+//   if (args.length < 4) throw new Error("Not enough arguments");
 
-  if (args.slice(2).every((val) => !isNaN(Number(val)))) {
-    return {
-      target: Number(args[2]),
-      exercise: args.slice(3).map((a) => Number(a)),
-    };
-  } else {
-    throw new Error("Provided values were not numbers!");
-  }
-};
+//   if (args.slice(2).every((val) => !isNaN(Number(val)))) {
+//     return {
+//       target: Number(args[2]),
+//       exercise: args.slice(3).map((a) => Number(a)),
+//     };
+//   } else {
+//     throw new Error("Provided values were not numbers!");
+//   }
+// };
 
-const calculateExercise = (target: number, exercise: number[]): Result => {
+export const calculateExercise = (
+  target: number,
+  exercise: number[]
+): Result => {
   const average = exercise.reduce((acc, cur) => acc + cur) / exercise.length;
   const rating = average > target ? 3 : average > target / 2 ? 2 : 1;
   const ratingDescription =
@@ -42,13 +45,13 @@ const calculateExercise = (target: number, exercise: number[]): Result => {
   };
 };
 
-try {
-  const { target, exercise } = parseArgs(process.argv);
-  console.log(calculateExercise(target, exercise));
-} catch (error: unknown) {
-  let errorMessage = "Something bad happened.";
-  if (error instanceof Error) {
-    errorMessage += " Error: " + error.message;
-  }
-  console.log(errorMessage);
-}
+// try {
+//   const { target, exercise } = parseArgs(process.argv);
+//   console.log(calculateExercise(target, exercise));
+// } catch (error: unknown) {
+//   let errorMessage = "Something bad happened.";
+//   if (error instanceof Error) {
+//     errorMessage += " Error: " + error.message;
+//   }
+//   console.log(errorMessage);
+// }
